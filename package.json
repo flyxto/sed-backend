@@ -17,7 +17,7 @@
     "test:coverage": "jest --runInBand --coverage",
     "migrate": "node-pg-migrate up",
     "migrate:create": "node-pg-migrate create",
-    "prepare": "husky"
+    "prepare": "node -e \"if(process.env.NODE_ENV !== 'production') require('child_process').execSync('husky', {stdio: 'inherit'})\""
   },
   "repository": {
     "type": "git",

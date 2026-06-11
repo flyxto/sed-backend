@@ -1,16 +1,17 @@
-version: '3.9'
+# version field removed (obsolete in modern Docker Compose)
 
 services:
   app:
     build:
       context: .
       dockerfile: docker/Dockerfile
-      target: builder
+      target: production
     ports:
       - '3000:3000'
     env_file: .env
-    volumes:
-      - ./src:/app/src
+    init: true # forwards SIGTERM properly to Node.js (prevents exit code 137)
+    restart: unless-stopped
+
     depends_on:
       postgres:
         condition: service_healthy
@@ -24,7 +25,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     ports:
-      - '5432:5432'
+      - '5433:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
