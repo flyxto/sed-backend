@@ -1,0 +1,39 @@
+# Dependencies
+node_modules
+
+# Version control
+.git
+.gitignore
+
+# Environment files (never bake secrets into image)
+.env
+.env.*
+
+# Dev tooling & config
+.eslintrc.js
+.prettierrc
+.husky
+commitlint.config.js
+jest.config.js
+
+# Tests
+tests
+
+# CI/CD
+.github
+
+# Migrations (run separately, not baked into image)
+migrations
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Docker files themselves
+Dockerfile
+.dockerignore
+docker
